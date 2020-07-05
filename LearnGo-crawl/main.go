@@ -30,10 +30,9 @@ func main() {
 
 
 func parseContent(content []byte){
-	//str:=`<a href="/comic/class_2.html">搞笑</a>`
-	re:=regexp.MustCompile(`<span><a href='/comic/class_([0-9]*).html'>([^"]+?)</a></span>`)
+	//str:=`<span><a href='/comic/class_1.html'>萌系</a></span>`
+	re:=regexp.MustCompile(`<span><a href='/comic/class_([0-9]*).html'>([^<]+?)</a></span>`)
 	match:=re.FindAllSubmatch(content,-1)//-1是全部都要
-	fmt.Printf("%s",match)
 	for _,m:=range match{
 		fmt.Printf("m[0]:%s,m[1]:%s,m[2]:%s\n",m[0],m[1],m[2])
 	}
