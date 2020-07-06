@@ -10,7 +10,10 @@ func ParseContent(content []byte) engine.ParseResult {
 	re:=regexp.MustCompile(regexpStr)
 	match:=re.FindAllSubmatch(content,-1)//-1是全部都要
 	result:= engine.ParseResult{}
-	for _,m:=range match{
+	for key,m:=range match{
+		if key>5 {//限制下读取的数量
+			break
+		}
 		result.Items=append(result.Items,m[2])
 		result.Requests=append(result.Requests,engine.Request{
 			Url:"http://www.huhudm.com/comic/class_"+string(m[1])+".html",
