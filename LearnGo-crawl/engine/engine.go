@@ -21,7 +21,7 @@ func Run(seeds ...Request) {
 		if err != nil {
 			log.Printf("Fetching Error: %s", r.Url)
 		}
-
+		//fmt.Printf("%s",body)
 		parseResult := r.ParseFunc(body)                     //得到的结果用解析器解析
 		requests = append(requests, parseResult.Requests...) //解析后得到的结果再继续放到requests中等待解析
 

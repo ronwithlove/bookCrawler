@@ -14,9 +14,10 @@ func ParseContent(content []byte) engine.ParseResult {
 		result.Items=append(result.Items,m[2])
 		result.Requests=append(result.Requests,engine.Request{
 			Url:"http://www.huhudm.com/comic/class_"+string(m[1])+".html",
-			ParseFunc:engine.NilParse,//下一层用的解析器，目前没有，就这样写，不可以直接写nil
+			ParseFunc:ParseBookList,//下一层用的解析器，目前没有，就这样写，不可以直接写nil
 			//ParseFunc:nil,//这样写不符合规则，会报错
 		})
 	}
 	return result
 }
+
