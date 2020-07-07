@@ -15,8 +15,9 @@ var updteReg=regexp.MustCompile(`<li><b>更新:</b>([^<]+?)</li>`)
 var collectedReg=regexp.MustCompile(`<li><b>收藏:</b>([0-9]*)`)
 var introReg=regexp.MustCompile(`简介</b>:([^<]+?)</li>`)
 
-func ParseBookDetail(content []byte) engine.ParseResult {
+func ParseBookDetail(content []byte, name string) engine.ParseResult {
 	bookDetail:=model.BookDetail{}
+	bookDetail.BookName=name
 	bookDetail.Author=ExtraString(content,authorReg)
 	bookDetail.Status=ExtraString(content,statusReg)
 	episode, err := strconv.Atoi(ExtraString(content, episodeReg))

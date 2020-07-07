@@ -14,10 +14,13 @@ func ParseBookList(content []byte) engine.ParseResult {
 		if key>3 {//限制下读取的数量
 			break
 		}
-		result.Items=append(result.Items,m[1])
+		name:=string(m[1])
+		result.Items=append(result.Items,name)
 		result.Requests=append(result.Requests,engine.Request{
 			Url:"http://www.huhudm.com/huhu"+string(m[2])+".html",
-			ParseFunc:ParseBookDetail,//下一层用的解析器，目前没有，就这样写，不可以直接写nil
+			ParseFunc: func(bytes []byte) engine.ParseResult {//匿名函数，函数式编程
+				return ParseBookDetail(bytes,name)
+			},//下一层用的解析器，目前没有，就这样写，不可以直接写nil
 			//ParseFunc:nil,//这样写不符合规则，会报错
 		})
 	}
