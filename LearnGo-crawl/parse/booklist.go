@@ -11,7 +11,7 @@ func ParseBookList(content []byte) engine.ParseResult {
 	match:=re.FindAllSubmatch(content,-1)//-1是全部都要
 	result:= engine.ParseResult{}
 	for key,m:=range match{
-		if key>3 {//限制下读取的数量
+		if key>10 {//限制下读取的数量
 			break
 		}
 		name:=string(m[1])
